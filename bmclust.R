@@ -136,10 +136,10 @@ if (length(args)<4) {
 }
 
 # define parameters based on user input
-base_dir <- args[1] #complete base directory where output files created/stored
-filename <- args[2] #raw data-frame to be assessed
-d <- args[3] #distance metric--i.e."euclidean", "manhattan"
-k <- as.integer(args[4]) #number of clusters 
+base_dir <- args[1] # complete base directory where output files created/stored
+filename <- args[2] # raw data-frame to be assessed
+d <- args[3] # distance metric--i.e."euclidean", "manhattan"
+k <- as.integer(args[4]) # number of clusters 
 
 # function dispatcher
 import_packages()
