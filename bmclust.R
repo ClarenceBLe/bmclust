@@ -62,7 +62,11 @@ distance_dissimilarity_matrices <- function(df,d) {
   return(list(distance=distance_matrix, dissimilarity=dissim_matrix))
 }
 
-ensemble_clustering <- function(df,k,d,base_dir,distance_matrix,dissim_matrix) {
+ensemble_clustering <- function(df,k,d,base_dir,matrices) {
+  # calculate distance and dissimilarity matrices 
+  distance_matrix <- matrices$distance
+  dissim_matrix <- matrices$dissimilarity
+  
   # k-means
   cluster_kmeans <- kmeans(df, centers=k) 
   kmeans_append_df <- data.frame(cluster_kmeans$cluster, df)
@@ -147,6 +151,4 @@ create_directories(base_dir)
 df <- read_scale_files(filename)
 optimal_cluster_count(df,d)
 matrices <- distance_dissimilarity_matrices(df,d) 
-distance_matrix <- matrices$distance
-dissim_matrix <- matrices$dissimilarity
-ensemble_clustering(df,k,d,base_dir, distance_matrix, dissim_matrix)
+ensemble_clustering(df,k,d,base_dir, matrices)
