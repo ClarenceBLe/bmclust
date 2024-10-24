@@ -18,3 +18,4 @@ i.e. Rscript bmclust.R . /path/to/data.csv manhattan 2
 * Distance and dissimilarity matrices computed from scaled data
 * Ensemble clustering performed based on scaled data, distance matrix, and dissimilarity matrix
 * Cluster assignments appended onto scaled dataframe for downstream statistical analysis
+* Ensemble clusters visualized and plots saved as *.png files
