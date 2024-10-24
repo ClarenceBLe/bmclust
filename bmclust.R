@@ -177,7 +177,7 @@ plot_clusters <- function(mlist,k,cluster_pam,cluster_hclust,cluster_agnes,clust
       png(file_path, width = 1200, height = 600)
       plot(cluster_fanny, main = "fanny silhouette")
       dev.off()
-    }
+      }
   }
 }
 
