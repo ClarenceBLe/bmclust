@@ -130,7 +130,6 @@ ensemble_clustering <- function(df,k,d,base_dir,matrices) {
 
   #return cluster variables
   return(list(c_kmeans=cluster_kmeans,c_pam=cluster_pam,c_clara=cluster_clara,c_hclust=cluster_hclust,c_agnes=cluster_agnes,c_diana=cluster_diana,c_fanny=cluster_fanny))
-  
 }
 
 plot_clusters <- function(mlist,k,ec) {
