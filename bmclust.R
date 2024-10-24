@@ -2,6 +2,7 @@ options(repos = c(CRAN = "https://cloud.r-project.org"))
 install.packages("cli")
 library(cli)
 
+# define functions
 # install packages
 import_packages <- function() {
   install.packages("NbClust")
@@ -22,7 +23,6 @@ import_packages <- function() {
   library(calinhara)
 }
 
-# define functions for command-line interface (CLI)
 create_directories <- function(base_dir) {
   if(!dir.exists(base_dir)){
     dir.create(base_dir, recursive=TRUE)
