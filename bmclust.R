@@ -138,6 +138,7 @@ plot_clusters <- function(mlist,k,cluster_pam,cluster_hclust,cluster_agnes,clust
       plot(cluster_pam, which.plot = 1, main = "pam cluster")
       plot(cluster_pam, which.plot = 2, main = "pam silhouette")
       dev.off()
+      cli_alert_success("PAM cluster plot saved to {file_path}.")
       }
     elif(m=="clara"){
       file_path <- file.path(base_dir, "cluster_plots", "clara_multi_cluster_silhouette.png")
@@ -146,6 +147,7 @@ plot_clusters <- function(mlist,k,cluster_pam,cluster_hclust,cluster_agnes,clust
       plot(cluster_clara, which.plot = 1, main = "clara cluster")
       plot(cluster_clara, which.plot = 2, main = "clara silhouette")
       dev.off()
+      cli_alert_success("CLARA cluster plot saved to {file_path}.")
       }
     elif(m=="hclust"){
       file_path <- file.path(base_dir, "cluster_plots", "hclust_dendrogram.png")
@@ -153,6 +155,7 @@ plot_clusters <- function(mlist,k,cluster_pam,cluster_hclust,cluster_agnes,clust
       plot(cluster_hclust, main="hclust dendrogram",xlab="observations",ylab="height")
       rect.hclust(x,k=k,border="blue")
       dev.off()
+      cli_alert_success("HCLUST cluster plot saved to {file_path}.")
       }
     elif(m=="agnes"){
       file_path <- file.path(base_dir, "cluster_plots", "agnes_multi_banner_dendrogram.png")
@@ -162,6 +165,7 @@ plot_clusters <- function(mlist,k,cluster_pam,cluster_hclust,cluster_agnes,clust
       plot(cluster_agnes, which.plot = 2, main = "agnes dendrogram")
       rect.hclust(cluster_agnes,k=k,border="blue")
       dev.off()
+      cli_alert_success("AGNES cluster plot saved to {file_path}.")
       }
     elif(m=="diana"){
       file_path <- file.path(base_dir, "cluster_plots", "diana_multi_banner_dendrogram.png")
@@ -171,12 +175,14 @@ plot_clusters <- function(mlist,k,cluster_pam,cluster_hclust,cluster_agnes,clust
       plot(cluster_diana, which.plot = 2, main = "diana dendrogram")
       rect.hclust(cluster_diana,k=k,border="blue")
       dev.off()
+      cli_alert_success("DIANA cluster plot saved to {file_path}.")
       }
     elif(m=="fanny"){
       file_path <- file.path(base_dir, "cluster_plots", "fanny_silhouette.png")
       png(file_path, width = 1200, height = 600)
       plot(cluster_fanny, main = "fanny silhouette")
       dev.off()
+      cli_alert_success("FANNY cluster plot saved to {file_path}.")
       }
   }
 }
