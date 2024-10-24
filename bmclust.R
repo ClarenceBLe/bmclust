@@ -62,7 +62,7 @@ distance_dissimilarity_matrices <- function(df,d) {
 }
 
 ensemble_clustering <- function(df,k,d,base_dir,matrices) {
-  # calculate distance and dissimilarity matrices 
+  # access distance and dissimilarity matrices 
   distance_matrix <- matrices$distance
   dissim_matrix <- matrices$dissimilarity
   
