@@ -129,6 +129,58 @@ ensemble_clustering <- function(df,k,d,base_dir,matrices) {
   cli_alert_success("additional cluster information accessible at 'cluster_fanny$silinfo'.")
 }
 
+plot_clusters <- function(mlist,k,cluster_pam,cluster_hclust,cluster_agnes,cluster_diana, cluster_fanny) {
+  for(m in mlist){
+    if(m=="pam"){
+      file_path <- file.path(base_dir, "cluster_plots", "pam_multi_cluster_silhouette.png")
+      png(file_path, width = 1200, height = 600)
+      layout(matrix(1:2, nrow = 1)) 
+      plot(cluster_pam, which.plot = 1, main = "pam cluster")
+      plot(cluster_pam, which.plot = 2, main = "pam silhouette")
+      dev.off()
+      }
+    elif(m=="clara"){
+      file_path <- file.path(base_dir, "cluster_plots", "clara_multi_cluster_silhouette.png")
+      png(file_path, width = 1200, height = 600)
+      layout(matrix(1:2, nrow = 1))  
+      plot(cluster_clara, which.plot = 1, main = "clara cluster")
+      plot(cluster_clara, which.plot = 2, main = "clara silhouette")
+      dev.off()
+      }
+    elif(m=="hclust"){
+      file_path <- file.path(base_dir, "cluster_plots", "hclust_dendrogram.png")
+      png(file_path, width = 1200, height = 600)
+      plot(cluster_hclust, main="hclust dendrogram",xlab="observations",ylab="height")
+      rect.hclust(x,k=k,border="blue")
+      dev.off()
+      }
+    elif(m=="agnes"){
+      file_path <- file.path(base_dir, "cluster_plots", "agnes_multi_banner_dendrogram.png")
+      png(file_path, width = 1200, height = 600)
+      layout(matrix(1:2, nrow = 1))  
+      plot(cluster_agnes, which.plot = 1, main = "agnes banner")
+      plot(cluster_agnes, which.plot = 2, main = "agnes dendrogram")
+      rect.hclust(cluster_agnes,k=k,border="blue")
+      dev.off()
+      }
+    elif(m=="diana"){
+      file_path <- file.path(base_dir, "cluster_plots", "diana_multi_banner_dendrogram.png")
+      png(file_path, width = 1200, height = 600)
+      layout(matrix(1:2, nrow = 1))
+      plot(cluster_diana, which.plot = 1, main = "diana banner")
+      plot(cluster_diana, which.plot = 2, main = "diana dendrogram")
+      rect.hclust(cluster_diana,k=k,border="blue")
+      dev.off()
+      }
+    elif(m=="fanny"){
+      file_path <- file.path(base_dir, "cluster_plots", "fanny_silhouette.png")
+      png(file_path, width = 1200, height = 600)
+      plot(cluster_fanny, main = "fanny silhouette")
+      dev.off()
+    }
+  }
+}
+
 # command-line (CLI) argument parsing
 args <- commandArgs(trailingOnly=TRUE)
 if (length(args)<4) {
@@ -143,6 +195,7 @@ base_dir <- args[1] # complete base directory where output files created/stored
 filename <- args[2] # raw data-frame to be assessed
 d <- args[3] # distance metric--i.e."euclidean", "manhattan"
 k <- as.integer(args[4]) # number of clusters 
+mlist <- c("pam","clara","hclust","agnes","diana","fanny") # subset list for specific methods to be visualized
 
 # function dispatcher
 import_packages()
@@ -151,3 +204,4 @@ df <- read_scale_files(filename)
 optimal_cluster_count(df,d)
 matrices <- distance_dissimilarity_matrices(df,d) 
 ensemble_clustering(df,k,d,base_dir,matrices)
+plot_clusters(mlist,k,cluster_pam,cluster_hclust,cluster_agnes,cluster_diana, cluster_fanny)
