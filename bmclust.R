@@ -3,7 +3,6 @@ install.packages("cli")
 library(cli)
 
 # define functions
-# install packages
 import_packages <- function() {
   install.packages("NbClust")
   library(NbClust)
